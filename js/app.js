@@ -434,7 +434,7 @@ class ContactManager {
     }
 
     copyEmail() {
-        const email = '[email@example.com]';
+        const email = 'rahmatra25d@student.unhas.ac.id';
         navigator.clipboard.writeText(email).then(() => {
             this.showNotification('Email disalin ke clipboard!', 'success');
         }).catch(() => {

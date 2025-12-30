@@ -17,6 +17,8 @@
     }
 }
 
+/* #home background handled by Tailwind classes in HTML for better control */
+/* 
 #home {
     background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
     background-size: 400% 400%;
@@ -27,7 +29,8 @@
     background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
-}
+} 
+*/
 
 /* Glassmorphism Effect */
 .glass-effect {
@@ -456,4 +459,37 @@ select:focus {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/* ============================================
+   NEW ANIMATIONS (BLOBS)
+   ============================================ */
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+}
+
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
 }
