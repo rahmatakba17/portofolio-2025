@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO & Open Graph -->
+    <title>Portfolio | Junior Web Developer - Magister Teknik Informatika Unhas</title>
+    <meta name="description"
+        content="Portfolio pribadi Junior Web Developer yang sedang menempuh Magister Teknik Informatika di Universitas Hasanuddin. Fokus pada web development dan sistem pendukung keputusan.">
+    <meta property="og:title" content="Portfolio Junior Web Developer">
+    <meta property="og:description"
+        content="Portfolio pribadi dengan fokus web development dan sistem pendukung keputusan.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://username.github.io/portfolio">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- Loading Overlay -->
+    <div id="loading"
+        class="fixed inset-0 bg-white dark:bg-gray-900 flex items-center justify-center z-50 transition-opacity duration-500">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <button id="theme-toggle" aria-label="Toggle dark mode"
+        class="fixed bottom-6 right-6 z-40 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110">
+        <svg id="theme-icon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <path class="sun-icon"
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
+        </svg>
+    </button>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" aria-label="Back to top"
+        class="hidden fixed bottom-20 right-6 z-40 bg-gray-800 dark:bg-gray-700 hover:bg-gray-900 dark:hover:bg-gray-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <!-- Navbar -->
+    <header id="navbar"
+        class="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm transition-all duration-300 z-30">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
+                    </svg>
+                    <span class="text-xl font-semibold">Portfolio</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home"
+                        class="nav-link active text-sm font-medium hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#about"
+                        class="nav-link text-sm font-medium hover:text-blue-600 transition-colors">Tentang</a>
+                    <a href="#skills"
+                        class="nav-link text-sm font-medium hover:text-blue-600 transition-colors">Keahlian</a>
+                    <a href="#projects"
+                        class="nav-link text-sm font-medium hover:text-blue-600 transition-colors">Project</a>
+                    <a href="#education"
+                        class="nav-link text-sm font-medium hover:text-blue-600 transition-colors">Pendidikan</a>
+                    <a href="#certificates"
+                        class="nav-link text-sm font-medium hover:text-blue-600 transition-colors">Sertifikasi</a>
+                    <a href="#contact"
+                        class="nav-link text-sm font-medium hover:text-blue-600 transition-colors">Kontak</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Toggle mobile menu" class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-2">
+                <a href="#home" class="mobile-nav-link block py-2 text-sm font-medium">Home</a>
+                <a href="#about" class="mobile-nav-link block py-2 text-sm font-medium">Tentang</a>
+                <a href="#skills" class="mobile-nav-link block py-2 text-sm font-medium">Keahlian</a>
+                <a href="#projects" class="mobile-nav-link block py-2 text-sm font-medium">Project</a>
+                <a href="#education" class="mobile-nav-link block py-2 text-sm font-medium">Pendidikan</a>
+                <a href="#certificates" class="mobile-nav-link block py-2 text-sm font-medium">Sertifikasi</a>
+                <a href="#contact" class="mobile-nav-link block py-2 text-sm font-medium">Kontak</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+
+        <!-- Hero Section -->
+        <section id="home"
+            class="min-h-screen flex items-center justify-center px-6 py-20 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
+            <div class="container mx-auto max-w-4xl text-center reveal">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    Halo, Saya <span class="gradient-text">[NAMA ANDA]</span>
+                </h1>
+                <h2 class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-6">
+                    Junior Web Developer | Magister Teknik Informatika (Unhas)
+                </h2>
+                <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Sedang aktif membangun fondasi kuat dalam pengembangan web modern dan sistem pendukung keputusan.
+                    Saya percaya proses belajar berkelanjutan adalah kunci untuk menghadirkan solusi teknologi yang
+                    bermakna.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects"
+                        class="btn-glow inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        Lihat Project
+                    </a>
+                    <a href="assets/cv.pdf" target="_blank"
+                        class="btn-glow inline-flex items-center justify-center px-6 py-3 glass-effect text-white font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.5a1 1 0 01.8.4l.5.6H19a2 2 0 012 2v12z" />
+                        </svg>
+                        Unduh CV
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-6 bg-white dark:bg-gray-900">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 reveal">Tentang Saya</h2>
+                <div class="grid md:grid-cols-3 gap-8 items-center">
+                    <div class="md:col-span-1 flex justify-center reveal">
+                        <div
+                            class="w-64 h-64 profile-avatar rounded-2xl shadow-xl flex items-center justify-center float-slow">
+                            <span class="text-white text-6xl font-bold">[NA]</span>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 reveal">
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            Saat ini saya menempuh studi Magister Teknik Informatika di <strong>Universitas
+                                Hasanuddin</strong>,
+                            di mana saya mendalami riset pada bidang sistem pendukung keputusan dan web development
+                            modern.
+                            Latar belakang pendidikan ini memberikan saya pemahaman kuat tentang dasar-dasar ilmiah di
+                            balik teknologi.
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            Saya aktif mengeksplorasi teknologi melalui project hands-on dan sertifikasi profesional.
+                            Setiap project adalah kesempatan untuk menerapkan teori ke dalam praktik dan belajar dari
+                            setiap iterasi.
+                            Saya percaya bahwa kolaborasi dan feedback konstruktif adalah bagian penting dari proses
+                            pertumbuhan.
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Fokus saya saat ini adalah membangun aplikasi web yang responsif, efisien, dan
+                            user-friendly,
+                            sambil terus mengembangkan kemampuan dalam mengimplementasikan algoritma SPK untuk solusi
+                            bisnis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 reveal">Keahlian Teknis</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <!-- Frontend -->
+                    <div class="skill-card bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg reveal">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Frontend</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">HTML/CSS</span>
+                                <span
+                                    class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Intermediate</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">JavaScript</span>
+                                <span
+                                    class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">Intermediate</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">TailwindCSS</span>
+                                <span
+                                    class="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend -->
+                    <div class="skill-card bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg reveal">
+                        <h3 class="text-xl font-semibold mb-4 text-green-600 dark:text-green-400">Backend</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Laravel</span>
+                                <span
+                                    class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">Basic</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Node.js</span>
+                                <span
+                                    class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">Basic</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">MySQL</span>
+                                <span
+                                    class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">Basic</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="skill-card bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg reveal">
+                        <h3 class="text-xl font-semibold mb-4 text-purple-600 dark:text-purple-400">Tools</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Git/GitHub</span>
+                                <span
+                                    class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Intermediate</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">VS Code</span>
+                                <span
+                                    class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Intermediate</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Postman</span>
+                                <span
+                                    class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">Basic</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI & IoT -->
+                    <div class="skill-card bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg reveal">
+                        <h3 class="text-xl font-semibold mb-4 text-red-600 dark:text-red-400">AI & IoT</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">SPK (TOPSIS/WP)</span>
+                                <span
+                                    class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">Basic</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Python</span>
+                                <span
+                                    class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">Basic</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Arduino</span>
+                                <span
+                                    class="text-xs bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-2 py-1 rounded">Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-6 bg-white dark:bg-gray-900">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 reveal">Project Portfolio</h2>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+                    <button data-filter="all"
+                        class="filter-btn active px-4 py-2 bg-blue-600 text-white rounded-lg transition-all duration-300">Semua</button>
+                    <button data-filter="web"
+                        class="filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300">Web
+                        Dev</button>
+                    <button data-filter="spk"
+                        class="filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300">SPK</button>
+                    <button data-filter="iot"
+                        class="filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300">IoT</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Project 1: SPK Laptop -->
+                    <div class="project-card reveal" data-category="spk" data-project="1">
+                        <div
+                            class="bg-gray-200 dark:bg-gray-700 border-2 border-dashed rounded-xl h-48 flex items-center justify-center">
+                            <span class="text-gray-500 dark:text-gray-400">Screenshot SPK</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2">Sistem Pendukung Keputusan Pemilihan Laptop</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                                Membantu mahasiswa memilih laptop ideal menggunakan metode TOPSIS.
+                                Mengatasi kebingungan memilih dari ratusan pilihan di pasaran.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span
+                                    class="tech-badge text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Laravel</span>
+                                <span
+                                    class="tech-badge text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">MySQL</span>
+                                <span
+                                    class="tech-badge text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">SPK/TOPSIS</span>
+                            </div>
+                            <button
+                                class="read-more-btn text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">Lihat
+                                Detail →</button>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Manajemen Tugas -->
+                    <div class="project-card reveal" data-category="web" data-project="2">
+                        <div
+                            class="bg-gray-200 dark:bg-gray-700 border-2 border-dashed rounded-xl h-48 flex items-center justify-center">
+                            <span class="text-gray-500 dark:text-gray-400">Screenshot Task Manager</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2">Aplikasi Manajemen Tugas Kuliah</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                                Platform untuk mengorganisir deadline tugas, kolaborasi kelompok,
+                                dan tracking progress nilai mata kuliah.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span
+                                    class="tech-badge text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Laravel</span>
+                                <span
+                                    class="tech-badge text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">Vue.js</span>
+                                <span
+                                    class="tech-badge text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded">JWT
+                                    Auth</span>
+                            </div>
+                            <button
+                                class="read-more-btn text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">Lihat
+                                Detail →</button>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: IoT Dashboard -->
+                    <div class="project-card reveal" data-category="iot" data-project="3">
+                        <div
+                            class="bg-gray-200 dark:bg-gray-700 border-2 border-dashed rounded-xl h-48 flex items-center justify-center">
+                            <span class="text-gray-500 dark:text-gray-400">Screenshot Dashboard IoT</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2">Dashboard Monitoring IoT Greenhouse</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                                Monitoring suhu, kelembaban real-time via web socket.
+                                Notifikasi otomatis saat parameter melewati ambang batas.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span
+                                    class="tech-badge text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">Node.js</span>
+                                <span
+                                    class="tech-badge text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">Socket.io</span>
+                                <span
+                                    class="tech-badge text-xs bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-2 py-1 rounded">Arduino</span>
+                            </div>
+                            <button
+                                class="read-more-btn text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">Lihat
+                                Detail →</button>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Company Profile -->
+                    <div class="project-card reveal" data-category="web" data-project="4">
+                        <div
+                            class="bg-gray-200 dark:bg-gray-700 border-2 border-dashed rounded-xl h-48 flex items-center justify-center">
+                            <span class="text-gray-500 dark:text-gray-400">Screenshot Company Profile</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2">Website Company Profile UMKM</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                                Website modern untuk promosi produk lokal dengan CMS sederhana.
+                                Meningkatkan visibility dan penjualan online.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span
+                                    class="tech-badge text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">HTML/CSS/JS</span>
+                                <span
+                                    class="tech-badge text-xs bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-2 py-1 rounded">PHP
+                                    Native</span>
+                                <span
+                                    class="tech-badge text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-2 py-1 rounded">MySQL</span>
+                            </div>
+                            <button
+                                class="read-more-btn text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">Lihat
+                                Detail →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 reveal">Pendidikan</h2>
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-blue-600"></div>
+
+                    <!-- S2 -->
+                    <div class="timeline-item reveal mb-12 flex items-center">
+                        <div class="w-full md:w-1/2 md:ml-auto md:pl-8">
+                            <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold">Magister Teknik Informatika</h3>
+                                    <span class="text-sm text-gray-500">2023 - Sekarang</span>
+                                </div>
+                                <p class="text-blue-600 dark:text-blue-400 font-medium mb-2">Universitas Hasanuddin</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                    Fokus riset pada Sistem Pendukung Keputusan dan Machine Learning dasar.
+                                    Aktif dalam seminar dan kolaborasi penelitian dengan dosen.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- S1 -->
+                    <div class="timeline-item reveal mb-12 flex items-center">
+                        <div class="w-full md:w-1/2 md:mr-auto md:pr-8">
+                            <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold">Sarjana Komputer</h3>
+                                    <span class="text-sm text-gray-500">2018 - 2020</span>
+                                </div>
+                                <p class="text-blue-600 dark:text-blue-400 font-medium mb-2">STMIK AKBA Makassar Menjadi
+                                    [UNITAMA]</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                    Konsentrasi Rekayasa Perangkat Lunak. Aktifitas: Himpunan Mahasiswa,
+                                    workshop pengembangan web, dan project akhir aplikasi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="py-20 px-6 bg-white dark:bg-gray-900">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 reveal">Sertifikasi & Pelatihan</h2>
+
+                <!-- Search & Filter -->
+                <div class="flex flex-col md:flex-row gap-4 mb-8 justify-center items-center reveal">
+                    <input type="text" id="certificate-search" placeholder="Cari sertifikat..."
+                        class="px-4 py-2 w-full md:w-1/2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="certificate-filter"
+                        class="px-4 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all">Semua Penyelenggara</option>
+                        <option value="bnsp">BNSP</option>
+                        <option value="dicoding">Dicoding</option>
+                        <option value="kominfo">Digital Talent Scholarship</option>
+                    </select>
+                </div>
+
+                <!-- Certificates Grid -->
+                <div id="certificates-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Certificate 1: BNSP Junior Web Developer -->
+                    <div class="certificate-card reveal bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                        data-provider="bnsp">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Junior Web Developer</h3>
+                                <p class="text-purple-600 dark:text-purple-400 text-sm">BNSP - Sertifikasi Profesi</p>
+                            </div>
+                            <span
+                                class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded">2024</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            Sertifikasi kompetensi profesional untuk pengembangan website dengan kualifikasi Junior Web
+                            Developer.
+                            Berlaku 3 tahun (12 Nov 2024 - 12 Nov 2027).
+                        </p>
+                        <a href="#" class="text-purple-600 dark:text-purple-400 text-sm font-medium hover:underline">
+                            🔗 No: 62090.2513.3.0112908.2024
+                        </a>
+                    </div>
+
+                    <!-- Certificate 2: Digital Talent VSGA -->
+                    <div class="certificate-card reveal bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                        data-provider="kominfo">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Junior Web Developer</h3>
+                                <p class="text-green-600 dark:text-green-400 text-sm">Digital Talent Scholarship - VSGA
+                                </p>
+                            </div>
+                            <span
+                                class="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">2024</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            Pelatihan Vocational School Graduate Academy selama 90 jam, mencakup UI implementation,
+                            pemrograman terstruktur, dan best practices web development.
+                        </p>
+                        <a href="#" class="text-green-600 dark:text-green-400 text-sm font-medium hover:underline">
+                            🔗 No: 19382711060-55/VSGA/BLSDM.Kominfo/2024
+                        </a>
+                    </div>
+
+                    <!-- Certificate 3: Dicoding Front-End -->
+                    <div class="certificate-card reveal bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                        data-provider="dicoding">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Belajar Fundamental Front-End Web Development</h3>
+                                <p class="text-blue-600 dark:text-blue-400 text-sm">Dicoding Indonesia</p>
+                            </div>
+                            <span
+                                class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">2024</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            Menguasai ES6, Web Component, module bundler (webpack), dan asynchronous request
+                            untuk pengembangan front-end modern. Total 70 jam pembelajaran.
+                        </p>
+                        <a href="https://dicoding.com/certificates/JLX12727JZ72" target="_blank"
+                            class="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">
+                            🔗 ID: JLX12727JZ72
+                        </a>
+                    </div>
+
+                    <!-- Certificate 4: Dicoding JavaScript -->
+                    <div class="certificate-card reveal bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                        data-provider="dicoding">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Belajar Dasar Pemrograman JavaScript</h3>
+                                <p class="text-blue-600 dark:text-blue-400 text-sm">Dicoding Indonesia</p>
+                            </div>
+                            <span
+                                class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">2023</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            Menguasai fundamental JavaScript: OOP, functional programming, error handling,
+                            concurrency, dan NPM. Standar kompetensi divalidasi AWS. Total 45 jam.
+                        </p>
+                        <a href="https://dicoding.com/certificates/L4PQ6K9LVPO1" target="_blank"
+                            class="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">
+                            🔗 ID: L4PQ6K9LVPO1
+                        </a>
+                    </div>
+
+                    <!-- Certificate 5: Digital Talent Database -->
+                    <div class="certificate-card reveal bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                        data-provider="kominfo">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Database Design & Programming with SQL</h3>
+                                <p class="text-green-600 dark:text-green-400 text-sm">Digital Talent Scholarship - FGA
+                                </p>
+                            </div>
+                            <span
+                                class="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">2021</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            Pelatihan Fresh Graduate Academy selama 180 jam mencakup database design, SQL query,
+                            DML/DDL, constraints, views, dan query optimization.
+                        </p>
+                        <a href="#" class="text-green-600 dark:text-green-400 text-sm font-medium hover:underline">
+                            🔗 No: 01123574261-19/DTS/BLSDM.KOMINFO/10/2021
+                        </a>
+                    </div>
+
+                    <!-- Certificate 6: Dicoding Front-End Pemula -->
+                    <div class="certificate-card reveal bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                        data-provider="dicoding">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Belajar Membuat Front-End Web untuk Pemula</h3>
+                                <p class="text-blue-600 dark:text-blue-400 text-sm">Dicoding Indonesia</p>
+                            </div>
+                            <span
+                                class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">2023</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            Belajar membuat website front-end untuk pemula dengan HTML, CSS, dan JavaScript dasar.
+                            Memahami DOM manipulation dan responsive web design.
+                        </p>
+                        <a href="https://dicoding.com/certificates/QLZ9234D2X5D" target="_blank"
+                            class="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">
+                            🔗 ID: QLZ9234D2X5D
+                        </a>
+                    </div>
+
+                    <!-- Certificate 7: Dicoding Dasar Web -->
+                    <div class="certificate-card reveal bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                        data-provider="dicoding">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Belajar Dasar Pemrograman Web</h3>
+                                <p class="text-blue-600 dark:text-blue-400 text-sm">Dicoding Indonesia</p>
+                            </div>
+                            <span
+                                class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">2022</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            Memahami dasar-dasar pemrograman web: HTML untuk struktur, CSS untuk styling,
+                            dan JavaScript untuk interaktivitas website.
+                        </p>
+                        <a href="https://dicoding.com/certificates/JLX1L4DO5X72" target="_blank"
+                            class="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">
+                            🔗 ID: JLX1L4DO5X72
+                        </a>
+                    </div>
+
+                    <!-- Certificate 8: Digital Talent Etika Digital -->
+                    <div class="certificate-card reveal bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                        data-provider="kominfo">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Etika dan Budaya Digital (Micro Skill)</h3>
+                                <p class="text-green-600 dark:text-green-400 text-sm">Digital Talent Scholarship</p>
+                            </div>
+                            <span
+                                class="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">2025</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            Pelatihan micro skill tentang etika digital, budaya digital, dan literasi digital
+                            dalam era transformasi digital Indonesia.
+                        </p>
+                        <a href="#" class="text-green-600 dark:text-green-400 text-sm font-medium hover:underline">
+                            🔗 ID: 22910030850-4441
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 reveal">Hubungi Saya</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+
+                    <!-- Contact Form -->
+                    <div class="reveal">
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-2">Nama</label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full px-4 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    aria-required="true">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    aria-required="true">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium mb-2">Subjek</label>
+                                <input type="text" id="subject" name="subject" required
+                                    class="w-full px-4 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    aria-required="true">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-2">Pesan</label>
+                                <textarea id="message" name="message" rows="4" required
+                                    class="w-full px-4 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    aria-required="true"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="reveal space-y-6">
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
+                            <h3 class="font-semibold text-lg mb-4">Informasi Kontak</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <div>
+                                        <p class="font-medium">Email</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">[email@example.com]</p>
+                                        <button id="copy-email"
+                                            class="text-blue-600 dark:text-blue-400 text-xs hover:underline">Salin
+                                            email</button>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 text-green-600 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.089 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                                    </svg>
+                                    <div>
+                                        <p class="font-medium">WhatsApp</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">+62 8xx-xxxx-xxxx</p>
+                                        <a href="https://wa.me/628xxxxxxxxx" target="_blank"
+                                            class="text-green-600 dark:text-green-400 text-xs hover:underline">Chat
+                                            sekarang</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-gray-200 mr-3" fill="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                                    </svg>
+                                    <div>
+                                        <p class="font-medium">GitHub</p>
+                                        <a href="https://github.com/username" target="_blank"
+                                            class="text-sm text-blue-600 dark:text-blue-400 hover:underline">github.com/username</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 text-blue-700 dark:text-blue-500 mr-3" fill="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                    </svg>
+                                    <div>
+                                        <p class="font-medium">LinkedIn</p>
+                                        <a href="https://linkedin.com/in/username" target="_blank"
+                                            class="text-sm text-blue-600 dark:text-blue-400 hover:underline">linkedin.com/in/username</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-black text-white py-8 px-6">
+        <div class="container mx-auto text-center">
+            <p class="text-sm text-gray-400">
+                &copy; 2024 [NAMA ANDA]. Dibuat dengan ❤️ dan kopi untuk portofolio akademik.
+            </p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="#home" class="text-gray-400 hover:text-white transition-colors text-sm">Kembali ke Atas</a>
+                <span class="text-gray-600">|</span>
+                <a href="https://github.com/username/username.github.io" target="_blank"
+                    class="text-gray-400 hover:text-white transition-colors text-sm">Source Code</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden"
+        aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="bg-white dark:bg-gray-900 max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl transform transition-all duration-300 scale-95 opacity-0"
+            id="modal-content">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 id="modal-title" class="text-2xl font-bold">Detail Project</h2>
+                    <button id="close-modal" aria-label="Close modal"
+                        class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="modal-body">
+                    <!-- Content will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>
