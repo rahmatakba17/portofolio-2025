@@ -1,28 +1,51 @@
-# Portfolio Junior Developer - Magister Teknik Informatika Unhas
+# Portfolio - Junior Web Developer
 
-Website portfolio profesional dengan tampilan modern, interaktif, dan siap deploy gratis.
+Portfolio website pribadi untuk menampilkan keahlian, project, sertifikasi, dan pendidikan sebagai Junior Web Developer.
 
-## 🚀 Fitur
+## 🌟 Features
 
-- Dark/Light mode + localStorage
-- Responsive design (mobile-first)
-- Scroll animations (IntersectionObserver)
-- Project filter & modal detail
-- Certificate search & filter
-- Contact form dengan validasi
-- SEO meta tags
-- Aksesibilitas (ARIA, reduced motion)
+- ✨ Modern & Responsive Design
+- 🌓 Dark/Light Mode
+- 📱 Mobile-First Approach
+- 🎨 Smooth Animations
+- 🔍 SEO Optimized
+- ⚡ Fast Performance
 
-## 📁 Cara Run Lokal
+## 🛠️ Tech Stack
 
-1. Buka terminal di folder `portfolio`
-2. Jalankan server lokal:
+- HTML5
+- CSS3 (Custom + TailwindCSS)
+- JavaScript (Vanilla)
+- Vercel (Deployment)
 
+## 🚀 Live Demo
+
+[View Live Portfolio](https://your-portfolio-url.vercel.app)
+
+## 📦 Local Development
+
+1. Clone repository:
 ```bash
-# Python 3
-python -m http.server 8000
+git clone https://github.com/username/portfolio.git
+cd portfolio
+```
 
-# Node.js
-npx http-server -p 8000
+2. Open dengan live server atau langsung buka `index.html` di browser
 
-# Atau pakai Live Server extension VS Code
+## 🌐 Deployment
+
+Project ini di-deploy menggunakan Vercel. Setiap push ke branch `main` akan otomatis trigger deployment baru.
+
+Untuk panduan lengkap deployment, lihat [Deployment Guide](docs/deployment_guide.md)
+
+## 📄 License
+
+© 2025 - All rights reserved
+
+## 📧 Contact
+
+Email: [email@example.com]
+
+---
+
+Made with ❤️ by [Nama Anda]
